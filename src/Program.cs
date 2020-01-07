@@ -306,34 +306,6 @@ namespace Windu
                [MarshalAs(UnmanagedType.U4)] out uint lpFileSizeHigh);
         }
 
-        /*
-        public static DirectoryInfo GetParentDirectory(this FileSystemInfo info) =>
-            info switch
-            {
-                null => throw new ArgumentNullException(nameof(info)),
-                FileInfo file => file.Directory,
-                var dir => ((DirectoryInfo)dir).Parent
-            };
-
-        public static string GetOriginalName(this FileSystemInfo info) =>
-            info switch
-            {
-                null => throw new ArgumentNullException(nameof(info)),
-                FileInfo file => Path.GetFileName(Directory.EnumerateFiles(file.Directory.FullName, file.Name).Single()),
-                DirectoryInfo dir when dir.Parent != null => Path.GetFileName(Directory.EnumerateDirectories(dir.Parent.FullName, dir.Name).Single()),
-                DirectoryInfo dir when dir.Name.IndexOf(':') == 1 => dir.Name.ToUpperInvariant(),
-                _ => ((DirectoryInfo)info).Name
-            };
-
-        public static string GetOriginalFullName(this FileSystemInfo info) =>
-            info switch
-            {
-                null => throw new ArgumentNullException(nameof(info)),
-                FileInfo file => Path.Combine(file.Directory.SelfAndParents().Cast<FileSystemInfo>().Reverse().Append(file).Select(p => p.GetOriginalName()).ToArray()),
-                _ => Path.Combine(((DirectoryInfo)info).SelfAndParents().Select(p => p.GetOriginalName()).Reverse().ToArray())
-            };
-        */
-
         static string DefaultDatabasePath => Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "windu.db");
 
         static int Wain(IList<string> args)
