@@ -104,10 +104,11 @@ namespace Windu
             }
         }
 
+        static readonly string DirectorySeparatorCharString = Path.DirectorySeparatorChar.ToString();
+
         static void List(string dbPath)
         {
             var dots = Array.Empty<char>();
-            var slash = Path.DirectorySeparatorChar.ToString();
 
             foreach (var (level, attributes, length, _, _, _, _, name) in Database.ReadEntries(() => File.OpenRead(dbPath)))
             {
@@ -121,7 +122,7 @@ namespace Windu
                 Console.Write(dots, 0, indent);
                 Console.Write(' ');
                 Console.Write(name);
-                Console.WriteLine((attributes & FileAttributes.Directory) != 0 ? slash : $" [{ByteSize.FromBytes(length)}]");
+                Console.WriteLine((attributes & FileAttributes.Directory) != 0 ? DirectorySeparatorCharString : $" [{ByteSize.FromBytes(length)}]");
             }
         }
 
